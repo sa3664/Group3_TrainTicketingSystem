@@ -24,9 +24,12 @@ public class SearchController {
     @RequestMapping("/Search")
     public String Search(@ModelAttribute SearchModel searchModel, Model model) {
         Iterable<Stop> stops =  stopRepository.findAll();
-
+        
+        Optional<Stop> sourceName = stopRepository.findById(searchModel.getFromStop());
+        Optional<Stop> destinationName = stopRepository.findById(searchModel.getToStop());
         model.addAttribute("stops", stops);
-
+       model.addAttribute("source", sourceName.get().getName());
+       model.addAttribute("destination", destinationName.get().getName());
         return "SearchResult";
     }
 }
