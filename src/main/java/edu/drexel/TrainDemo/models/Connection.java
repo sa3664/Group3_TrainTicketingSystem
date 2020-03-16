@@ -2,12 +2,15 @@ package edu.drexel.TrainDemo.models;
 
 import java.math.BigInteger;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
 public class Connection {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
     private Trip trip;
     private Stop startStop;
@@ -16,8 +19,7 @@ public class Connection {
     protected Connection() {
     }
 
-    public Connection(BigInteger id, Trip trip, Stop startStop, Stop endStop) {
-        this.id = id;
+    public Connection( Trip trip, Stop startStop, Stop endStop) {
         this.trip = trip;
         this.startStop = startStop;
         this.endStop = endStop;
