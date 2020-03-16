@@ -33,10 +33,11 @@ public class PathServiceImpl implements PathService {
     List<Path> pathsList = new ArrayList<Path>();
 
     for (StopTime stopTime : tripsfromStop) {
+      if(stopTime.getId().getStop_id().equals(fromStop)){
       Optional<StopTime> otoStopTime = stopTimeRepository.findById(new StopTimeIdentity(stopTime.getTrip_id(), toStop));
+      StopTime toStopTime = otoStopTime.isPresent() ? otoStopTime.get() : null;
 
-        if (Optional.empty() != null){
-          StopTime toStopTime = otoStopTime.get();
+        if (toStopTime != null){
           if( stopTime.getStop_Sequence() < toStopTime.getStop_Sequence() ) {
           //  if(stopRepository.findById(fromStop).isPresent() && stopRepository.findById(toStop).isPresent() )
             //{
@@ -50,9 +51,9 @@ public class PathServiceImpl implements PathService {
           pathsList.add(new Path(fromstop.getName(), tostop.getName(), stopTime.getDeparture_Time(), toStopTime.getArrival_Time(), cList ));
         
       }
-      }
-    }
+      }}
 
-    return null;
+    }
+    return pathsList;
   }
 }

@@ -64,30 +64,34 @@
 					<div class="col-md-7 col-md-offset-1">
 						<div class="booking-form">  
                          <div class="container">
-                            <div>From:<h3 th:text="${source}"/>
-                                To:<h3 th:text="${destination}"/>
-                            
+                            <div class="row">
+								<h1>From:</h3><h5 th:text="${source}"/>
+                                <h1>To:</h3><h5 th:text="${destination}"/> 
                             </div>
 							<form>
                                 <br/><br/>
                                   <table class="table">
                                     <thead class="thead-light">
                                       <tr>
-                                        <th scope="col">TripId</th>
-                                        <th scope="col">Source</th>
-                                        <th scope="col">Destination</th>
+										<th scope="col">Source Station </th>
+										<th scope="col">Departure Time</th>
+										<th scope="col">Destination Station</th>
+										<th scope="col">Arrival Time</th>
                                         <th scope="col">Price</th>
                                         <th scope="col"></th>
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td><button class="btn btn-lg btn-primary btn-sm">Add to Cart</button></td>
-                                      </tr>
+										<th:block th:each="path : ${directpaths}">
+											<tr>
+												<td th:text="${path.fromStop} "></td>
+												<td th:text="${path.departureTime}"></td>
+												<td th:text="${path.toStop}"</td>
+												<td th:text="${path.arrivalTime}"></td>
+												<td th:text="99.99"/>
+												
+											</tr>
+										</th:block>
                                       
                                       
                                     </tbody>
