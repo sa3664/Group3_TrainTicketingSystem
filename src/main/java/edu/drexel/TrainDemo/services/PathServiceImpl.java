@@ -3,6 +3,7 @@ package edu.drexel.TrainDemo.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import edu.drexel.TrainDemo.models.Connection;
 import edu.drexel.TrainDemo.models.Path;
@@ -13,6 +14,7 @@ import edu.drexel.TrainDemo.repositories.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import edu.drexel.TrainDemo.models.StopTimeIdentity;
 
 @Service
 public class PathServiceImpl implements PathService {
@@ -33,18 +35,21 @@ public class PathServiceImpl implements PathService {
     for (StopTime stopTime : tripsfromStop) {
       Optional<StopTime> otoStopTime = stopTimeRepository.findById(new StopTimeIdentity(stopTime.getTrip_id(), toStop));
 
-        if (otoStopTime.value != null){
+        if (Optional.empty() != null){
           StopTime toStopTime = otoStopTime.get();
-          if( stopTime.getStop_Sequence() < toStopTime.getStop_Sequence()) {
-
-          Stop fromstop = stopRepository.findById(fromStop).get();
-          Stop tostop = stopRepository.findById(toStop).get();
+          if( stopTime.getStop_Sequence() < toStopTime.getStop_Sequence() ) {
+          //  if(stopRepository.findById(fromStop).isPresent() && stopRepository.findById(toStop).isPresent() )
+            //{
+    Stop fromstop = stopRepository.findById(fromStop).orElseThrow(RuntimeException::new);
+    Stop tostop = stopRepository.findById(toStop).orElseThrow(RuntimeException::new);
+         
 
           Trip trip = tripRepository.findById(stopTime.getTrip_id()).get();
           List<Connection> cList = new ArrayList<Connection>();
           cList.add(new Connection( trip, fromstop, tostop));
           pathsList.add(new Path(fromstop.getName(), tostop.getName(), stopTime.getDeparture_Time(), toStopTime.getArrival_Time(), cList ));
-        }
+        
+      }
       }
     }
 
