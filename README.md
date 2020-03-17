@@ -50,9 +50,9 @@ Below are most of the technologies used in this project. This project intentiona
 
 - Hibernate - A full Object Relational Mapper (ORM). This is what powers our Repository pattern. (However, this kind of abstraction is not without it's issues. See [here](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch).)
 
-- Java Servlet Pages (JSP) - This provides server-side templating so our controllers can respond directly with HTML. This is the easiest way to get started. You are free to switch to a more modern templating system like Thymeleaf or switch entirely to a Single-Page Application like React or Angular for your frontend. Its up to you. But however you proceed, you will probably have to use JS at some point to make AJAX calls.
+- Thymeleaf - We are using one of the modern templating system like Thymeleaf in our project. We are also using JS in some of the files.
 
-- Twitter Bootstrap - The current HTML index.html is written using [Bootstrap](https://getbootstrap.com/docs/4.4/)'s styling. Bootstrap is an easy way to create a professional looking website.
+- Twitter Bootstrap - We are using Bootstrap [Bootstrap](https://getbootstrap.com/docs/4.4/)'s in all our HTML(Thymeleaf) files .
 
 ## Vocab
 
@@ -66,16 +66,25 @@ These are terms used in this project. The following come from our Amtrak data.
 
 4. __Route__ - A route represents the physical tracks a train runs on. A route has many trips. In most cases, each of a route's trips have the same stops, but there is no guarantee of this. A route is operated by an agency.
 
-To complete this application, you will have to introduce many new terms to describe concepts in your system. I suggest a few here.
+To complete this application, We have introduced many new terms to describe concepts in our system:
 
 5. __Connection__ - A connection connects two trips together at a specific stop. For example, to get from AAA to CCC, you may have to take a trip from AAA to BBB, then another from BBB to CCC. We would say you have a connection at BBB.
 
 6. __Path__ - A path describes how a customer would actually get from stop A to B. So (at a minimum) a path would include a departure date and time, a set of trips, and a set of connections.
 
-7. __Ticket__ - A ticket is what a customer uses to board the train. A customer may require many tickets if their path has many trips.
+Below are the terms that are yet to eb implemented in our system :
 
-8. __Reservation__ - A reservation is what a customer actually pays for. It may include many tickets for many people.
+7. __Ticket__(#TO BE IMPLEMENTED) - A ticket is what a customer uses to board the train. A customer may require many tickets if their path has many trips.
+
+8. __Reservation__(#TO BE IMPLEMENTED) - A reservation is what a customer actually pays for. It may include many tickets for many people.
 
 ## Integration
 
-To complete the above use cases, your system will have to integrate with many existing systems. For authorization, you will have to integrate with (multiple) OAuth2 providers. For processing payments, you will have to integrate with a credit card processor (such as Strip) and PayPal. (You could even support Venmo, cryptocurrencies, or mail-in-checks.) To provide attractions near destinations, you will need to integrate with something like Google Maps or Yelp. You should not expect these services to always to be online or fully functional. Your system should gracefully handle outages and unexpected behavior.
+Our system has been integrated with below :
+
+1. For authorization : Our system has been integrated with (multiple) OAuth2 providers.
+
+Our system will also integrate with below in future:
+
+1. For processing payments(# TO BE IMPLEMENTED) : Our system will have to integrate with a credit card processor (such as Stripe) and PayPal. 
+2. For attractions : Our system will need to integrate with something like Google Maps or Yelp. 
