@@ -20,29 +20,21 @@ import edu.drexel.TrainDemo.repositories.StopRepository;
 import edu.drexel.TrainDemo.services.PathService;
 
 @Controller
-public class SearchController {
+public class CartController {
     private StopRepository stopRepository;
 
     @Autowired
     private PathService pathService;
     
-    public SearchController(StopRepository stopRepository) {
+    public CartController(StopRepository stopRepository) {
         this.stopRepository = stopRepository;
     }
 
 
-    @RequestMapping("/Search")
-    public String Search(@ModelAttribute SearchModel searchModel, Model model) {
+    @RequestMapping("/AddCartItem")
+    public String AddCartItem(@ModelAttribute CartItem cartItem, Model model) {
         Iterable<Stop> stops =  stopRepository.findAll();
-        Iterable<Path> directpaths = pathService.getDirectPaths(searchModel.getFromStop(), searchModel.getToStop());
-
-        Optional<Stop> sourceName = stopRepository.findById(searchModel.getFromStop());
-        Optional<Stop> destinationName = stopRepository.findById(searchModel.getToStop());
         model.addAttribute("stops", stops);
-        model.addAttribute("directpaths", directpaths);
-        model.addAttribute("source", sourceName.get().getName());
-        model.addAttribute("destination", destinationName.get().getName());
-        model.addAttribute("CartItem", new CartItem());
-        return "SearchResult";
+        return "AddCartItemResult";
         }
 }

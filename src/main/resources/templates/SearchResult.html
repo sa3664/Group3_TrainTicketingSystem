@@ -61,35 +61,35 @@
 							<br/><br/><br/><br/>
 						</div> -->
 					</div>
-					<div class="col-md-7 col-md-offset-1">
-						<div class="booking-form">  
+					<div class="col-md-12 col-md-offset-1">
+						<div class="SearchResult-form">  
                          <div class="container">
                             <div class="row">
-								<h1>From:</h3><h5 th:text="${source}"/>
-                                <h1>To:</h3><h5 th:text="${destination}"/> 
+								<h5><strong>From:  </strong></h5> &nbsp;<h5 th:text="${source}"/>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                <h5><strong>To: </strong></h5>&nbsp;<h5 th:text="${destination}"/> 
                             </div>
-							<form>
+							<form action="#" id="PathForm"  method="post" th:action="@{/AddCartItem}" th:object="${CartItem}">
                                 <br/><br/>
                                   <table class="table">
                                     <thead class="thead-light">
                                       <tr>
+                                        <th scope="col"></th>
 										<th scope="col">Source Station </th>
 										<th scope="col">Departure Time</th>
 										<th scope="col">Destination Station</th>
 										<th scope="col">Arrival Time</th>
                                         <th scope="col">Price</th>
-                                        <th scope="col"></th>
                                       </tr>
                                     </thead>
                                     <tbody>
 										<th:block th:each="path : ${directpaths}">
 											<tr>
+												<td> <input type="radio" aria-label="Radio button for path" th:value="${path}" th:field="${CartItem.path}"> </td>
 												<td th:text="${path.fromStop} "></td>
 												<td th:text="${path.departureTime}"></td>
-												<td th:text="${path.toStop}"</td>
+												<td th:text="${path.toStop}"></td>
 												<td th:text="${path.arrivalTime}"></td>
-												<td th:text="99.99"/>
-												
+												<td th:value="99.99" th:field="${CartItem.price}"></td>
 											</tr>
 										</th:block>
                                       
@@ -177,9 +177,9 @@
 										</div>
 									</div>
 								</div> -->
-								<!-- <div class="form-btn">
-									<button class="submit-btn">Show trains</button>
-								</div> -->
+								<div class="form-btn">
+									<button class="submit-btn">Add To Cart</button>
+								</div>
                             </form>
                         </div>
 						</div>
