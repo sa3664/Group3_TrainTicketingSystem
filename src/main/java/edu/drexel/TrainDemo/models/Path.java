@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Path {
    
+    private String id;
     private String fromStop;
     private String toStop;
     private Time departureTime;
@@ -62,6 +63,20 @@ public class Path {
 
     public void setConnection(List<Connection> connection) {
         this.connection = connection;
+    }
+
+    @Override
+    public String toString() {
+        return "Path [arrivalTime=" + arrivalTime + ", connection=" + connection + ", departureTime=" + departureTime
+                + ", fromStop=" + fromStop + ", toStop=" + toStop + "]";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 
