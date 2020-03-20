@@ -9,16 +9,14 @@ import java.math.BigDecimal;
 
 public class CartItem {
    
+    private Integer index;
     private Path path;
     private BigDecimal price;
 
     public CartItem() {
     }
 
-    public CartItem(Path path, BigDecimal price) {
-        this.path = path;
-        this.price = price;
-    }
+   
 
     public Path getPath() {
         return path;
@@ -33,6 +31,20 @@ public class CartItem {
     }
 
     public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
+
+    public CartItem(Integer index, Path path, BigDecimal price) {
+        this.index = index;
+        this.path = path;
         this.price = price;
     }
 

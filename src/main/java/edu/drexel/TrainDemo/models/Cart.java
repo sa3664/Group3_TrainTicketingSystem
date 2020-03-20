@@ -11,6 +11,8 @@ public class Cart {
    
     private List<CartItem> Items;
 
+    public Cart()
+    {}
     public Cart(List<CartItem> items) {
         Items = items;
     }
