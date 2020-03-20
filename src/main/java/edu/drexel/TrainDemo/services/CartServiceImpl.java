@@ -1,5 +1,6 @@
 package edu.drexel.TrainDemo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import edu.drexel.TrainDemo.models.Cart;
 import edu.drexel.TrainDemo.models.CartItem;
@@ -20,9 +21,8 @@ public class CartServiceImpl implements CartService {
   private TripRepository tripRepository;
 
   @Override
-  public void addItem(CartItem cartItem) {
+  public void addItem(Cart cart, CartItem cartItem) {
 
-Cart cart=new Cart();
 List<CartItem> items = cart.getItems();
 items.add(cartItem);
 cart.setItems(items);

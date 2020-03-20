@@ -1,6 +1,11 @@
 package edu.drexel.TrainDemo.controllers;
 
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
+
+import com.nimbusds.oauth2.sdk.Request;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +31,7 @@ public class CartController {
     
     @ModelAttribute("cart")
 public Cart createCart() {
-    return new Cart();
+    return new Cart(new ArrayList<CartItem>());
 }
     public CartController(StopRepository stopRepository) {
         this.stopRepository = stopRepository;
@@ -35,15 +40,27 @@ public Cart createCart() {
     
 
     @RequestMapping("/AddCartItem")
-    public String AddCartItem(@SessionAttribute("directpaths") ArrayList<Path> directpaths, @ModelAttribute("CartItem") CartItem cartItem, Model model) {
+    public String AddCartItem(@SessionAttribute("directpaths") ArrayList<Path> directpaths, @ModelAttribute("CartItem") CartItem cartItem, Model model,HttpSession session) {
         cartItem.setPath(directpaths.get(cartItem.getIndex()));
-        cartService.addItem(cartItem);
-    //    model.addAttribute("stops", stops);
-        return "AddCartItemResult";
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        if(cart != null)
+            cartService.addItem(cart, cartItem);
+        else{
+            cart =  new Cart(new ArrayList<CartItem>());
+            cartService.addItem(cart, cartItem);
         }
+
+      // session.setAttribute("cart", cart);
+       model.addAttribute("cart", cart);
+
+        return "AddCartItemResult";
+
+
+    }
     
-        @GetMapping("/Checkout")
-        public String checkout(@SessionAttribute("cart") Cart cart, Model model) {
+    @RequestMapping("/Checkout")
+    public String checkout(@SessionAttribute("cart") Cart cart, Model model,HttpSession session) {
                   model.addAttribute("cart", cart);
             return "Checkout";
             }
