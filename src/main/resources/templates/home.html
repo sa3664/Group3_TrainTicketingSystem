@@ -13,8 +13,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Train Ticket</a>
+<nav class="navbar navbar-dark navbar-expand-xl fixed-top bg-dark" >
+	<a class="navbar-brand bg-dark" href="#" style="height:5rem; font-size:2.5rem;padding-top: 1rem;"><strong>TrainLine</strong></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,9 +48,9 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="booking-cta">
-						<br/><br/><br/><br/>
-						<h1>Book your Trip today</h1>
-							<br/><br/><br/><br/>
+						<br/><br/><br/>
+						<h1 style="color:white;font: weight 550;"> <strong> Book your Trip today</strong></h1>
+						
 						</div>
 					</div>
 					<div class="col-md-7 col-md-offset-1">
@@ -70,10 +70,12 @@
 									
 									</div> -->
 								</div>
+
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<span class="form-label">Source Station</span>
+											<br/><br/>
+											<span class="form-label"><strong>Source Station</strong></span>
 											 <select class="form-control" th:field="*{fromStop}">
 										        <option value="">From</option>
 										        <option th:each="stop: ${stops}" th:text="${stop.name} + ' (' + ${stop.id} + ')'"
@@ -84,7 +86,8 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<span class="form-label">Destination Station</span>
+											<br/><br/>
+											<span class="form-label"><strong>Destination Station</strong></span>
                                             <select class="form-control" th:field="*{toStop}">
 										        <option value="">To</option>
 										        <option th:each="stop: ${stops}" th:text="${stop.name} + ' (' + ${stop.id} + ')'"
@@ -144,6 +147,7 @@
 									</div>
 								</div> -->
 								<div class="form-btn">
+									<br/><br/>
 									<button class="submit-btn">Show trains</button>
 								</div>
 							</form>
