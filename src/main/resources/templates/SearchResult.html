@@ -64,7 +64,7 @@
 					<div class="col-md-12 col-md-offset-1">
 						<div class="SearchResult-form">  
                          <div class="container">
-                            <div class="row">
+                            <div class="row" th:object="${directpaths}">
 								<h5><strong>From:  </strong></h5> &nbsp;<h5 th:text="${source}"/>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                 <h5><strong>To: </strong></h5>&nbsp;<h5 th:text="${destination}"/> 
                             </div>
@@ -73,23 +73,25 @@
                                   <table class="table">
                                     <thead class="thead-light">
                                       <tr>
-                                        <th scope="col"></th>
+                                       
 										<th scope="col">Source Station </th>
 										<th scope="col">Departure Time</th>
 										<th scope="col">Destination Station</th>
 										<th scope="col">Arrival Time</th>
-                                        <th scope="col">Price</th>
+										<th scope="col">Price</th>
+                                        <th scope="col"></th>
                                       </tr>
                                     </thead>
                                     <tbody>
-										<th:block th:each="path : ${directpaths}">
+										<th:block th:each="path, iterStat : ${directpaths}">
 											<tr>
-												<td> <input type="radio" aria-label="Radio button for path" th:value="${path}" th:field="${CartItem.path}"> </td>
+												
 												<td th:text="${path.fromStop} "></td>
 												<td th:text="${path.departureTime}"></td>
 												<td th:text="${path.toStop}"></td>
 												<td th:text="${path.arrivalTime}"></td>
-												<td th:value="99.99" th:field="${CartItem.price}"></td>
+												<td th:value="99.99" th:field="*{price}"></td>
+												<td> <input type="checkbox" th:value="${iterStat.index}" th:field="${CartItem.index}" /> </td>
 											</tr>
 										</th:block>
                                       
