@@ -83,8 +83,8 @@ Below are the terms that are yet to eb implemented in our system :
 Our system has been integrated with below :
 
 1. For authorization : Our system has been integrated with (multiple) OAuth2 providers.
+1. For processing payments : Our system has been integrate with a credit card processor , Stripe) for the same.
 
 Our system will also integrate with below in future:
 
-1. For processing payments(# TO BE IMPLEMENTED) : Our system will have to integrate with a credit card processor (such as Stripe) and PayPal. 
-2. For attractions : Our system will need to integrate with something like Google Maps or Yelp. 
+1. For attractions : Our system will need to integrate with something like Google Maps or Yelp. 
