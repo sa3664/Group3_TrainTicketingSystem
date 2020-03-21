@@ -62,6 +62,5 @@ public class Connection {
     public void setEndStop(Stop endStop) {
         this.endStop = endStop;
     }
-
     
 }

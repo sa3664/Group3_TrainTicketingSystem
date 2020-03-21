@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 //import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import edu.drexel.TrainDemo.models.Connection;
 import edu.drexel.TrainDemo.models.Path;
@@ -33,27 +34,66 @@ public class PathServiceImpl implements PathService {
     List<Path> pathsList = new ArrayList<Path>();
 
     for (StopTime stopTime : tripsfromStop) {
-      if(stopTime.getId().getStop_id().equals(fromStop)){
-      Optional<StopTime> otoStopTime = stopTimeRepository.findById(new StopTimeIdentity(stopTime.getTrip_id(), toStop));
-      StopTime toStopTime = otoStopTime.isPresent() ? otoStopTime.get() : null;
+      if (stopTime.getId().getStop_id().equals(fromStop)) {
+        Optional<StopTime> otoStopTime = stopTimeRepository
+            .findById(new StopTimeIdentity(stopTime.getTrip_id(), toStop));
+        StopTime toStopTime = otoStopTime.isPresent() ? otoStopTime.get() : null;
 
-        if (toStopTime != null){
-          if( stopTime.getStop_Sequence() < toStopTime.getStop_Sequence() ) {
-          //  if(stopRepository.findById(fromStop).isPresent() && stopRepository.findById(toStop).isPresent() )
-            //{
-    Stop fromstop = stopRepository.findById(fromStop).orElseThrow(RuntimeException::new);
-    Stop tostop = stopRepository.findById(toStop).orElseThrow(RuntimeException::new);
-         
+        if (toStopTime != null) {
+          if (stopTime.getStop_Sequence() < toStopTime.getStop_Sequence()) {
 
-          Trip trip = tripRepository.findById(stopTime.getTrip_id()).get();
-          List<Connection> cList = new ArrayList<Connection>();
-          cList.add(new Connection( trip, fromstop, tostop));
-          pathsList.add(new Path(fromstop.getName(), tostop.getName(), stopTime.getDeparture_Time(), toStopTime.getArrival_Time(), cList ));
-        
+            Stop fromstop = stopRepository.findById(fromStop).orElseThrow(RuntimeException::new);
+            Stop tostop = stopRepository.findById(toStop).orElseThrow(RuntimeException::new);
+
+            Trip trip = tripRepository.findById(stopTime.getTrip_id()).get();
+            List<Connection> cList = new ArrayList<Connection>();
+            cList.add(new Connection(trip, fromstop, tostop));
+            pathsList.add(new Path(fromstop.getName(), tostop.getName(), stopTime.getDeparture_Time(),
+                toStopTime.getArrival_Time(), cList));
+
+          }
+        }
       }
-      }}
 
     }
     return pathsList;
   }
+
+  @Override
+  public List<Path> getConnectedPaths(String fromStop, String toStop) {
+    Iterable<StopTime> tripsfromStop = stopTimeRepository.findAll();
+    List<Path> pathsList = new ArrayList<Path>();
+    List<Path> connectedpathsList = new ArrayList<Path>();
+
+    for (StopTime stopTime : tripsfromStop) {
+      if (stopTime.getId().getStop_id().equals(fromStop)) {
+        Optional<StopTime> otoStopTime = stopTimeRepository
+            .findById(new StopTimeIdentity(stopTime.getTrip_id(), toStop));
+        StopTime toStopTime = otoStopTime.isPresent() ? otoStopTime.get() : null;
+
+        if (toStopTime == null) {
+          Iterable<StopTime> stopsOnTrip = stopTimeRepository.findAll();
+          for (StopTime stop : stopsOnTrip) {
+            if (stop.getId().getTrip_Id().equals(stopTime.getId().getTrip_Id())) {
+              if (!stop.getId().getStop_id().equals(stopTime.getId().getStop_id())) {
+                List<Path> connections = getDirectPaths(stop.getId().getStop_id(), toStop);
+                List<Path> uConnections = connections.stream().distinct().collect(Collectors.toList());
+                Stop fromstop = stopRepository.findById(fromStop).orElseThrow(RuntimeException::new);
+                if (uConnections.size() > 0){
+                  uConnections.get(0).setFromStop(fromstop.getName());
+                  uConnections.get(0).setDepartureTime(stopTime.getDeparture_Time());
+                  connectedpathsList.addAll(uConnections);
+                }
+              }
+            }
+          }
+
+        }
+      }
+
+    }
+    pathsList = connectedpathsList.stream().distinct().collect(Collectors.toList());
+    return pathsList;
+  }
+
 }

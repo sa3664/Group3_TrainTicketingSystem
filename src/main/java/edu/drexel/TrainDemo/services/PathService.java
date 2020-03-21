@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public interface PathService {
   
     List<Path> getDirectPaths(String fromStop, String toStop);
-  //  List<Path> getConnectedPaths(String fromStop, String toStop);
+    List<Path> getConnectedPaths(String fromStop, String toStop);
 	
 }
