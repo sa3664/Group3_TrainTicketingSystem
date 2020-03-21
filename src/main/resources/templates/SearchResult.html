@@ -64,7 +64,7 @@
 								<h5><strong>From:  </strong></h5> &nbsp;<h5 th:text="${source}"/>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                 <h5><strong>To: </strong></h5>&nbsp;<h5 th:text="${destination}"/> 
                             </div>
-							<form action="#" id="PathForm"  method="post" th:action="@{/AddCartItem}" th:object="${CartItem}">
+							<form action="#" id="PathForm"  method="post" th:action="@{/Cart}" th:object="${CartItem}">
                                 <br/><br/>
                                   <table class="table">
                                     <thead class="thead-light">
@@ -86,95 +86,15 @@
 												<td th:text="${path.departureTime}"></td>
 												<td th:text="${path.toStop}"></td>
 												<td th:text="${path.arrivalTime}"></td>
-												<td th:value="99.99" th:field="*{price}"></td>
-												<td> <input type="checkbox" th:value="${iterStat.index}" th:field="${CartItem.index}" /> </td>
+												<td data-th-text="99.99" name="price"></td>
+												<td> <input type="radio" th:value="${iterStat.index}" th:field="${CartItem.index}" /> </td>
 											</tr>
 										</th:block>
                                       
                                       
                                     </tbody>
                                   </table>
-							<!-- 	<div class="form-group">
-									<div class="form-checkbox">
-										<label for="roundtrip">
-											<input type="radio" name="flight-type" id="roundtrip" onclick="Check();">
-											<span></span>Roundtrip
-										</label>
-										<label for="one-way">
-											<input type="radio" name="flight-type" id="one-way" onclick="Check();">
-											<span></span>One way
-										</label>
-									
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<span class="form-label">Source Station</span>
-											 <select class="form-control" th:field="*{from}">
-										        <option value="">Select From</option>
-										        <option th:each="stop: ${stops}" th:text="${stop.id} + ': ' + ${stop.name}"
-										                th:value="${stop.id}"></option>
-										     </select>
-										     <span class="select-arrow"></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<span class="form-label">Destination Station</span>
-											<input class="form-control" type="text" placeholder="City">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<span class="form-label">Departing</span>
-											<input class="form-control" type="date" required>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group" id="returnDate">
-											<span class="form-label">Returning</span>
-											<input class="form-control" type="date" required>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<span class="form-label">Adults (18+)</span>
-											<select class="form-control">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-											</select>
-											<span class="select-arrow"></span>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<span class="form-label">Children (0-17)</span>
-											<select class="form-control">
-												<option>0</option>
-												<option>1</option>
-												<option>2</option>
-											</select>
-											<span class="select-arrow"></span>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<span class="form-label">Discount</span>
-											<select class="form-control">
-												<option>Adult (18+)</option>
-												<option>Children (0-17)</option>
-												
-											</select>
-											<span class="select-arrow"></span>
-										</div>
-									</div>
-								</div> -->
+						
 								<div class="form-btn">
 									<button class="submit-btn">Add To Cart</button>
 								</div>
