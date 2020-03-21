@@ -49,14 +49,13 @@
     	<div id="booking" class="section">
 		<div class="section-center">
 			<div class="container">
-				<div class="row">
-					<!-- <div class="col-md-4">
-						<div class="booking-cta">
+<!-- 				
+						<div>
 						<br/><br/><br/><br/>
 						<h1>See available trains</h1>
-							<br/><br/><br/><br/>
+							<br/><br/>
 						</div> -->
-					</div>
+					
 					<div class="col-md-12 col-md-offset-1">
 						<div class="SearchResult-form">  
                          <div class="container">
@@ -65,7 +64,9 @@
                                 <h5><strong>To: </strong></h5>&nbsp;<h5 th:text="${destination}"/> 
                             </div>
 							<form action="#" id="PathForm"  method="post" th:action="@{/Cart}" th:object="${CartItem}">
-                                <br/><br/>
+								<br/><br/>
+								
+								<h3><Strong>Direct Routes</Strong></h3>
                                   <table class="table">
                                     <thead class="thead-light">
                                       <tr>
@@ -86,12 +87,54 @@
 												<td th:text="${path.departureTime}"></td>
 												<td th:text="${path.toStop}"></td>
 												<td th:text="${path.arrivalTime}"></td>
-												<td data-th-text="99.99" name="price"></td>
-												<td> <input type="radio" th:value="${iterStat.index}" th:field="${CartItem.index}" /> </td>
+												<td th:text="*{'9.99'}" ></td>
+												<!-- <td hidden="true"><input type="text" name='price' th:field="*{'99.99'}"/></td> -->
+												<td> <input type="radio" th:value="D+${iterStat.index}" th:field="${CartItem.index}" /> </td>
 											</tr>
 										</th:block>
                                       
                                       
+                                    </tbody>
+								  </table>
+								  <br/><br/><br/>
+								  <h3><Strong>Connection Routes</Strong></h3>
+								  <table class="table">
+                                    <thead class="thead-light">
+                                      <tr>
+										<th scope="col">Source Station </th>
+										<th scope="col">Departure Time</th>
+										<th scope="col">Destination Station</th>
+										<th scope="col">Arrival Time</th>
+										<th scope="col">Transfers</th>
+										<th scope="col">Price</th>
+                                        <th scope="col"></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+										<th:block th:each="path, iterStat : ${connectedpaths}">
+											<tr>
+												
+												<td th:text="${path.fromStop} "></td>
+												<td th:text="${path.departureTime}"></td>
+												<td th:text="${path.toStop}"></td>
+												<td th:text="${path.arrivalTime}"></td>
+												<td>
+													<table class="table">
+														<tbody>
+															<th:block th:each="connection: ${path.connection}"> 
+																<tr>
+																<td th:if="${connection != null}" th:text="${connection.startStop.name} "></td>
+																<td th:if="${connection != null}" th:text="${connection.getEndStop().name}"></td>
+															</tr>
+															</th:block>
+														</tbody>
+													</table>	
+												</td>
+												<td th:text="*{'69.99'}" ></td>
+												<!-- <td hidden="true"><input type="text" name='price' th:field="*{'99.99'}"/></td> -->
+												<td> <input type="radio" th:if="${iterStat != null}"  th:value="C+${iterStat.index}" th:field="${CartItem.index}" /> </td>
+											</tr>
+										</th:block>
                                     </tbody>
                                   </table>
 						
