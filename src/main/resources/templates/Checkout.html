@@ -60,7 +60,7 @@
 						<div class="SearchResult-form">  
                          <div class="container">
                            
-							<form action="#" id="PathForm"  method="post" th:action="@{/AddCartItem}" th:object="${CartItem}">
+							<form action="#" id="PathForm"  method="post" th:action="@{/Cart}" th:object="${CartItem}">
                                 <br/><br/>
                                   <table class="table">
                                     <thead class="thead-light">
@@ -82,7 +82,7 @@
 												<td th:text="${item.path.departureTime}"></td>
 												<td th:text="${item.path.toStop}"></td>
 												<td th:text="${item.path.arrivalTime}"></td>
-                                                <td th:text="${item.price}"></td>
+                                                <td data-th-text="99.99"></td>
                                                 <td ><button class="btn btn-danger">Remove Item</button></td>
 											</tr>
 										</th:block>
@@ -90,10 +90,12 @@
                                       
                                     </tbody>
                                   </table>
+                                  <br/><br/>
                                   <div class="form-btn">
 									<a href="/" class="btn btn-info submit-btn inline_block" role="button">Search for more trains</a>
 									
                                 </div>
+                                <br/>
 								<div class="form-btn">
 									<a href="/Payment" class="btn btn-info submit-btn inline_block" role="button">Proceed for payment</a>
 									
