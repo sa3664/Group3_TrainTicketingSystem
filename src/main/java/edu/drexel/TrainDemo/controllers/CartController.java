@@ -3,13 +3,9 @@ package edu.drexel.TrainDemo.controllers;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
-
-import com.nimbusds.oauth2.sdk.Request;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -39,7 +35,7 @@ public Cart createCart() {
 
     
 
-    @RequestMapping("/AddCartItem")
+    @RequestMapping("/Cart")
     public String AddCartItem(@SessionAttribute("directpaths") ArrayList<Path> directpaths, @ModelAttribute("CartItem") CartItem cartItem, Model model,HttpSession session) {
         cartItem.setPath(directpaths.get(cartItem.getIndex()));
         Cart cart = (Cart) session.getAttribute("cart");
@@ -58,11 +54,6 @@ public Cart createCart() {
 
 
     }
-    
-    // @RequestMapping("/Checkout")
-    // public String checkout(@SessionAttribute("cart") Cart cart, Model model,HttpSession session) {
-    //               model.addAttribute("cart", cart);
-    //         return "Checkout";
-    //         }
+
         
 }

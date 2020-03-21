@@ -2,9 +2,6 @@ package edu.drexel.TrainDemo.services;
 
 import edu.drexel.TrainDemo.models.Cart;
 import edu.drexel.TrainDemo.models.CartItem;
-
-import java.util.ArrayList;
-
 import org.springframework.stereotype.Service;
 
 

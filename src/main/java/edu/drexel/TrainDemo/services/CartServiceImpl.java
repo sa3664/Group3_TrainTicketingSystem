@@ -13,13 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CartServiceImpl implements CartService {
 
-  @Autowired
-  private StopRepository stopRepository;
-  @Autowired
-  private StopTimeRepository stopTimeRepository;
-  @Autowired
-  private TripRepository tripRepository;
-
+ 
   @Override
   public void addItem(Cart cart, CartItem cartItem) {
 
