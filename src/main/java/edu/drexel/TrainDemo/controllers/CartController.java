@@ -54,15 +54,15 @@ public Cart createCart() {
       // session.setAttribute("cart", cart);
        model.addAttribute("cart", cart);
 
-        return "AddCartItemResult";
+        return "Checkout";
 
 
     }
     
-    @RequestMapping("/Checkout")
-    public String checkout(@SessionAttribute("cart") Cart cart, Model model,HttpSession session) {
-                  model.addAttribute("cart", cart);
-            return "Checkout";
-            }
+    // @RequestMapping("/Checkout")
+    // public String checkout(@SessionAttribute("cart") Cart cart, Model model,HttpSession session) {
+    //               model.addAttribute("cart", cart);
+    //         return "Checkout";
+    //         }
         
 }
