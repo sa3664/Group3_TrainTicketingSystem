@@ -1,17 +1,10 @@
 package edu.drexel.TrainDemo.models;
 
-import java.math.BigDecimal;
-//import java.math.BigInteger;
-//import java.sql.Time;
-//import java.util.List;
-
-//import org.springframework.data.util.Pair;
-
 public class CartItem {
    
-    private Integer index;
+    private String index;
     private Path path;
-    private BigDecimal price;
+    private double price;
 
     public CartItem() {
     }
@@ -26,23 +19,23 @@ public class CartItem {
         this.path = path;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Integer getIndex() {
+    public String getIndex() {
         return index;
     }
 
-    public void setIndex(Integer index) {
+    public void setIndex(String index) {
         this.index = index;
     }
 
-    public CartItem(Integer index, Path path, BigDecimal price) {
+    public CartItem(String index, Path path, Double price) {
         this.index = index;
         this.path = path;
         this.price = price;
