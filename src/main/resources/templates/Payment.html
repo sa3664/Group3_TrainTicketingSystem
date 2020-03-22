@@ -27,11 +27,11 @@
                 </p>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5>Leather Bag</h5>
-                        <p class="lead">USD 9.99</p>
+                                               <h5>Cart Total Price</h5>
+                        <p class="lead" th:text="${cartTotal}"></p>
                     </div>
                 </div>
-                <form action="#" id="payment-form" method="post">
+                <form action="#" id="payment-form" method="GET" th:action="@{/Ticket}">
                     <input id="api-key" type="hidden" th:value="${stripePublicKey}">
                     <div class="form-group">
                         <label class="font-weight-medium" for="card-element">
@@ -42,13 +42,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" id="email" name="email"
-                               placeholder="Email Address" type="email" required>
+                        <input class="form-control" id="name" name="name"
+                        placeholder="Name" type="text" th:value="*{name}" required>
+                        <br/>
+                 <input class="form-control" id="email" name="email"
+                        placeholder="Email Address" type="email" th:value="*{email}" required>
+                       
                     </div>
                     <!-- Used to display Element errors. -->
                     <div class="text-danger w-100" id="card-errors" role="alert"></div>
                     <div class="form-group pt-2">
-                        <button class="btn btn-primary btn-block" id="submitButton" type="submit">
+                        <button class="btn btn-primary btn-block" id="submitButton" onclick="handlepayment();" >
                             Pay With Your Card
                         </button>
                         <div class="small text-muted mt-2">
@@ -95,8 +99,9 @@
         });
 
         // Handle form submission.
-        var form = document.getElementById('payment-form');
-        form.addEventListener('submit', function (event) {
+        var paymentform = document.getElementById('payment-form');
+        var paymentProcess = document.getElementById('submitButton');
+        paymentProcess.addEventListener('click', function (event) {
             event.preventDefault();
             // handle payment
             handlePayments();
@@ -118,7 +123,8 @@
                         {email: email, token: token},
                         function (data) {
                             alert(data.details);
-                            window.location ="/";
+                            paymentform.submit();
+                            // window.location ="/Ticket";
                         }, 'json');
                 }
             });

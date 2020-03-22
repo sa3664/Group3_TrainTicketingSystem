@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.drexel.TrainDemo.models.Response;
@@ -23,8 +24,10 @@ public class PaymentController {
     }
 
     @GetMapping("/Payment")
-    public String chargePage(Model model) {
+    public String chargePage(Model model, @RequestParam(value = "cartTotal") String cartTotal) {
         model.addAttribute("stripePublicKey", API_PUBLIC_KEY);
+        model.addAttribute("cartTotal",  cartTotal);
+        
         return "Payment";
     }
 
