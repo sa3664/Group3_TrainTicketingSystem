@@ -47,13 +47,11 @@ public class SearchController {
 
     @RequestMapping("/Search")
     public String Search(@ModelAttribute SearchModel searchModel, Model model) {
-        Iterable<Stop> stops = stopRepository.findAll();
         Iterable<Path> directpaths = pathService.getDirectPaths(searchModel.getFromStop(), searchModel.getToStop());
         Iterable<Path> connectedpaths = pathService.getConnectedPaths(searchModel.getFromStop(), searchModel.getToStop());
 
         Optional<Stop> sourceName = stopRepository.findById(searchModel.getFromStop());
         Optional<Stop> destinationName = stopRepository.findById(searchModel.getToStop());
-        model.addAttribute("stops", stops);
         model.addAttribute("directpaths", directpaths);
         model.addAttribute("connectedpaths", connectedpaths);
         model.addAttribute("source", sourceName.get().getName());
