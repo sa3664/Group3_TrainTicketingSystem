@@ -97,6 +97,7 @@ Our system will also integrate with below in future:
                    Direct Route: 
                    ![Search](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Search_directRoute.JPG)
 
+#And
                    Connected Route:
                    ![Search](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Search_connectedRoute.JPG)
 
@@ -108,7 +109,7 @@ Our system will also integrate with below in future:
                    integrating with our application.
                    Direct Route: 
                    ![Payment](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Payment.JPG)
-
+#And
                    Payment confirmation:
                    ![Payment](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Payment%20Confirmation.JPG)
 
