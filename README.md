@@ -50,7 +50,7 @@ Below are most of the technologies used in this project. This project intentiona
 
 - Hibernate - A full Object Relational Mapper (ORM). This is what powers our Repository pattern. (However, this kind of abstraction is not without it's issues. See [here](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch).)
 
-- Thymeleaf - We are using one of the modern templating system like Thymeleaf in our project. We are also using JS in some of the files.
+- Thymeleaf - We are using one of the modern templating system Thymeleaf in our project. We are also using JS in some of the files.
 
 - Twitter Bootstrap - We are using Bootstrap [Bootstrap](https://getbootstrap.com/docs/4.4/)'s in all our HTML(Thymeleaf) files .
 
@@ -72,11 +72,9 @@ To complete this application, We have introduced many new terms to describe conc
 
 6. __Path__ - A path describes how a customer would actually get from stop A to B. So (at a minimum) a path would include a departure date and time, a set of trips, and a set of connections.
 
-Below are the terms that are yet to eb implemented in our system :
+7. __Ticket__ - A ticket is what a customer uses to board the train. A customer may require many tickets if their path has many trips.
 
-7. __Ticket__(#TO BE IMPLEMENTED) - A ticket is what a customer uses to board the train. A customer may require many tickets if their path has many trips.
-
-8. __Reservation__(#TO BE IMPLEMENTED) - A reservation is what a customer actually pays for. It may include many tickets for many people.
+8. __Reservation__- A reservation is what a customer actually pays for. It may include many tickets for many people.
 
 ## Integration
 
@@ -88,3 +86,19 @@ Our system has been integrated with below :
 Our system will also integrate with below in future:
 
 1. For attractions : Our system will need to integrate with something like Google Maps or Yelp. 
+
+## Application 
+
+1. Home Screen   : This screen is the homepage with the search functionality.
+
+2. Search Screen : This screen is to display search results on basis of "direct routes" or "connected 
+                   routes". 
+
+3. Cart Screen   : This screen shows the cart and gives you the option to either add more train tickets in 
+                   your cart or remove existing tickets from the cart . Also , it lets you proceed to the checkout if you are happy with your purchase.
+
+4. Payment Screen: This screen includes your payment gateway "Strip". We have used Stripe server for 
+                   integrating with our application.
+
+5. Ticket Screen : This screen will get you the ticket for the bookings done.
+                   
