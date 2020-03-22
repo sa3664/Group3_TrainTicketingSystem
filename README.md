@@ -90,15 +90,27 @@ Our system will also integrate with below in future:
 ## Application 
 
 1. Home Screen   : This screen is the homepage with the search functionality.
+                   ![Home](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Home.JPG)
 
 2. Search Screen : This screen is to display search results on basis of "direct routes" or "connected 
-                   routes". 
+                   routes".
+                   Direct Route: 
+                   ![Search](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Search_directRoute.JPG)
+
+                   Connected Route:
+                   ![Search](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Search_connectedRoute.JPG)
 
 3. Cart Screen   : This screen shows the cart and gives you the option to either add more train tickets in 
                    your cart or remove existing tickets from the cart . Also , it lets you proceed to the checkout if you are happy with your purchase.
+                   ![Cart](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Cart.JPG)
 
 4. Payment Screen: This screen includes your payment gateway "Strip". We have used Stripe server for 
                    integrating with our application.
+                   Direct Route: 
+                   ![Payment](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Payment.JPG)
+
+                   Payment confirmation:
+                   ![Payment](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Payment%20Confirmation.JPG)
 
 5. Ticket Screen : This screen will get you the ticket for the bookings done.
-                   
+                   ![Ticket](https://github.com/sa3664/Group3_TrainTicketingSystem/blob/master/Documents/Screens/Ticket.JPG)
