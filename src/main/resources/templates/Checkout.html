@@ -60,7 +60,7 @@
 						<div class="SearchResult-form">  
                          <div class="container">
                            
-							<form action="#" id="PathForm"  method="post" th:action="@{/Cart}" th:object="${CartItem}">
+							<form id="PathForm" method="GET" th:action="@{/Payment}" >
                                 <br/><br/>
                                   <table class="table">
                                     <thead class="thead-light">
@@ -77,7 +77,6 @@
                                     <tbody>
 										<th:block th:each="item, iterStat : ${cart.Items}">
 											<tr>
-												
 												<td th:text="${item.path.fromStop} "></td>
 												<td th:text="${item.path.departureTime}"></td>
 												<td th:text="${item.path.toStop}"></td>
@@ -86,8 +85,14 @@
                                                 <td ><button class="btn btn-danger">Remove Item</button></td>
 											</tr>
 										</th:block>
-                                      
-                                      
+                                      <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td>Total</td>
+                                          <td><b th:text="${#aggregates.sum(cart.Items.![price])}"/></td>
+                                          <td hidden="true"><input type="text" th:value="${#aggregates.sum(cart.Items.![price])}" name="cartTotal" /></td>
+                                      </tr>
                                     </tbody>
                                   </table>
                                   <br/><br/>
@@ -97,8 +102,8 @@
                                 </div>
                                 <br/>
 								<div class="form-btn">
-									<a href="/Payment" class="btn btn-info submit-btn inline_block" role="button">Proceed for payment</a>
-									
+									<!-- <button href="/Payment" class="btn btn-info submit-btn inline_block" role="button"></a> -->
+                                        <button class="submit-btn">Proceed for payment</button>
 								</div>
                             </form>
                         </div>
